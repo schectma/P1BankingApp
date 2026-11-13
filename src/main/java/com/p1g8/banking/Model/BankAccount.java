@@ -3,7 +3,7 @@ package com.p1g8.banking.model;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-public record BankAccount(long id,
+public record BankAccount(long accountId,
                           long customerId,
                           String accountNumber,
                           AccountType type,
