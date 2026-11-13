@@ -10,7 +10,7 @@ erDiagram
         string lastName
         string username
         string password
-        datetime createdAt
+        timestamptz createdAt
     }
     ACCOUNT{
         long accountId PK
@@ -19,6 +19,6 @@ erDiagram
         AccountType type
         numeric balance
         AccountStatus status
-        datetime createdAt
+        timestamptz createdAt
     }
 ```
