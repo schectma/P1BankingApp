@@ -5,6 +5,7 @@ title: Banking Model/Entity Relationships
 erDiagram
     CUSTOMER ||--o{ ACCOUNT : owns
     EMPLOYEE }|--o{ ACCOUNT : manages
+    ACCOUNT }|--o{ TRANSACTION : has
     CUSTOMER{
         long customerId PK
         string firstName
@@ -30,5 +31,16 @@ erDiagram
         string password
         boolean active
         timestamptz createdAt
+    }
+    TRANSACTION{
+        int transactionId PK
+        int origin
+        int destination
+        int type
+        int amount
+        int initiatedByEmployeeId FK
+        timestamptz date
+        boolean status
+        int noteId FK
     }
 ```
