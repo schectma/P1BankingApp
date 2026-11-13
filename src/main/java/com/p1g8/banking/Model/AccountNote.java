@@ -10,7 +10,7 @@ public class AccountNote {
     private String text;
     private List<String> tags;
     private Long relatedTransactionId;
-    private Instant createdAT;
+    private Instant createdAt;
 
     public AccountNote(long id, long accountId, long employeeId, String text, List<String> tags, Long relatedTransactionId, Instant createdAt) {
         this.id = id;
@@ -46,7 +46,7 @@ public class AccountNote {
         return relatedTransactionId;
     }
 
-    public Instant getCreatedAT() {
+    public Instant getCreatedAt() {
         return createdAT;
     }
 }
