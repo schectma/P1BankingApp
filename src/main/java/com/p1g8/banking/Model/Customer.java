@@ -1,4 +1,4 @@
-package com.p1g8.banking.Model;
+package com.p1g8.banking.model;
 
 public class Customer{
     private int customerId;
@@ -7,5 +7,5 @@ public class Customer{
     private String lastName;
 
     private String username;
-    private String password;
+    private String passwordHash;
 }
