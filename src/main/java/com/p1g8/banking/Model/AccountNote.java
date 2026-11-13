@@ -19,7 +19,7 @@ public class AccountNote {
         this.text = text;
         this.tags = tags;
         this.relatedTransactionId = relatedTransactionId;
-        this.createdAT = createdAt;
+        this.createdAt = createdAt;
     }
 
     public long getId() {
@@ -46,7 +46,7 @@ public class AccountNote {
         return relatedTransactionId;
     }
 
-    public Instant getCreatedAt() {
-        return createdAT;
+    public Instant getcreatedAt() {
+        return createdAt;
     }
 }
