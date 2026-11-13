@@ -12,14 +12,14 @@ public class AccountNote {
     private Long relatedTransactionId;
     private Instant createdAT;
 
-    public AccountNote(long id, long accountId, long employeeId, String text, List<String> tags, Long relatedTransactionId, Instant createdAT) {
+    public AccountNote(long id, long accountId, long employeeId, String text, List<String> tags, Long relatedTransactionId, Instant createdAt) {
         this.id = id;
         this.accountId = accountId;
         this.employeeId = employeeId;
         this.text = text;
         this.tags = tags;
         this.relatedTransactionId = relatedTransactionId;
-        this.createdAT = createdAT;
+        this.createdAT = createdAt;
     }
 
     public long getId() {
