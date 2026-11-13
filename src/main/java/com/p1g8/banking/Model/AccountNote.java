@@ -1,10 +1,10 @@
-package com.p1g8.banking.Model;
+package com.p1g8.banking.model;
 
 import java.time.Instant;
 import java.util.List;
 
 public class AccountNote {
-    private String id;
+    private long id;
     private long accountId;
     private long employeeId;
     private String text;
@@ -12,7 +12,7 @@ public class AccountNote {
     private Long relatedTransactionId;
     private Instant createdAT;
 
-    public AccountNote(String id, long accountId, long employeeId, String text, List<String> tags, Long relatedTransactionId, Instant createdAT) {
+    public AccountNote(long id, long accountId, long employeeId, String text, List<String> tags, Long relatedTransactionId, Instant createdAT) {
         this.id = id;
         this.accountId = accountId;
         this.employeeId = employeeId;
@@ -22,7 +22,7 @@ public class AccountNote {
         this.createdAT = createdAT;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
