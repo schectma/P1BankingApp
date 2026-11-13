@@ -4,6 +4,7 @@ title: Banking Model/Entity Relationships
 ---
 erDiagram
     CUSTOMER ||--o{ ACCOUNT : owns
+    EMPLOYEE }|--o{ ACCOUNT : manages
     CUSTOMER{
         BIGINT id PK
         VARCHAR first_name
@@ -20,5 +21,14 @@ erDiagram
         NUMERIC balance
         AccountStatus status "ACTIVE | FROZEN | CLOSED"
         TIMESTAMPTZ created_at
+    }
+    EMPLOYEE{
+        long employeeId PK
+        string firstName
+        string lastName
+        string username UK
+        string password
+        boolean active
+        timestamptz createdAt
     }
 ```
