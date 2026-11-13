@@ -1,4 +1,4 @@
-package com.p1g8.banking.Model;
+package com.p1g8.banking.model;
 
 import java.time.Instant;
 import java.util.List;
