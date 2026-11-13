@@ -31,4 +31,15 @@ erDiagram
         boolean active
         timestamptz createdAt
     }
+    TRANSACTION{
+        int transactionId PK
+        int origin
+        int destination
+        int type
+        int amount
+        int initiatedByEmployeeId FK
+        timestamptz date
+        boolean status
+        int noteId FK
+    }
 ```
