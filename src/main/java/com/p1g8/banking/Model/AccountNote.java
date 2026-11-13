@@ -46,7 +46,7 @@ public class AccountNote {
         return relatedTransactionId;
     }
 
-    public Instant getCreatedAT() {
+    public Instant getCreatedAt() {
         return createdAT;
     }
 }
