@@ -6,6 +6,7 @@ erDiagram
     CUSTOMER ||--o{ ACCOUNT : owns
     EMPLOYEE }|--o{ ACCOUNT : manages
     ACCOUNT }|--o{ TRANSACTION : has
+    TRANSACTION }|--o{ NOTE : has
     CUSTOMER{
         long customerId PK
         string firstName
@@ -42,5 +43,14 @@ erDiagram
         timestamptz date
         boolean status
         int noteId FK
+    }
+    NOTE{
+        int noteId PK,UK
+        long accountId FK
+        long employeeId FK
+        long transactionId
+        text content
+        text tags[]
+        date createdAt
     }
 ```
