@@ -1,12 +1,12 @@
-package com.p1g8.banking.Model;
+package com.p1g8.banking.model;
 
 public class Transaction {
     private int transactionId;
 
-    private int origin;
-    private int desintation;
+    private int originAccountId;
+    private int desintationAccountId;
 
-    private int type;
+    TransactionType type;
     private double amount;
 
     private String date;
