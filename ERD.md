@@ -39,4 +39,13 @@ erDiagram
         BIGINT initiated_by_employee_id FK "references employee.id"
         TIMESTAMPTZ created_at
     }
+    NOTE{
+        int noteId PK,UK
+        long accountId FK
+        long employeeId FK
+        long transactionId
+        text content
+        text tags[]
+        date createdAt
+    }
 ```
