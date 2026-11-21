@@ -17,7 +17,7 @@ public class AccountNote {
         this.accountId = accountId;
         this.employeeId = employeeId;
         this.text = text;
-        this.tags = tags;
+        this.tags = List.copyOf(tags);
         this.relatedTransactionId = relatedTransactionId;
         this.createdAt = createdAt;
     }
