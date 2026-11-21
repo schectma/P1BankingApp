@@ -21,7 +21,7 @@ erDiagram
     ACCOUNT{
         BIGINT id PK
         BIGINT customer_id FK
-        VARCHAR account_number
+        VARCHAR account_number UK
         AccountType type "CHECKING | SAVINGS"
         NUMERIC balance
         AccountStatus status "ACTIVE | FROZEN | CLOSED"
@@ -49,7 +49,7 @@ erDiagram
         BIGINT account_id "logical reference to account.id"
         BIGINT employee_id "logical reference to employee.id"
         BIGINT related_transaction_id "logical reference to transaction.id"
-        VARCHAR note_text
+        TEXT note_text
         TEXT[] tags
         TIMESTAMPTZ created_at
     }
