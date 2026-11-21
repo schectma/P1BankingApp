@@ -8,4 +8,6 @@ public class Customer{
 
     private String username;
     private String passwordHash;
+
+    private Instant createdAt;
 }
