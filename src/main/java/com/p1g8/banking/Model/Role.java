@@ -1,7 +1,6 @@
-package com.p1g8.banking.Model;
+package com.p1g8.banking.model;
 
 public enum Role {
-    Employee,
-    Customer
-
+    EMPLOYEE,
+    CUSTOMER
 }
