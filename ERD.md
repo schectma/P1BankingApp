@@ -9,7 +9,7 @@ erDiagram
         BIGINT id PK
         VARCHAR first_name
         VARCHAR last_name
-        VARCHAR user_name
+        VARCHAR user_name UK
         VARCHAR password_hash 
         TIMESTAMPTZ created_at
     }
@@ -23,12 +23,11 @@ erDiagram
         TIMESTAMPTZ created_at
     }
     EMPLOYEE{
-        long employeeId PK
-        string firstName
-        string lastName
-        string username UK
-        string password
-        boolean active
-        timestamptz createdAt
+        BIGINT id PK
+        VARCHAR first_name
+        VARCHAR last_name
+        VARCHAR user_name UK
+        VARCHAR password_hash
+        TIMESTAMPTZ created_at
     }
 ```
