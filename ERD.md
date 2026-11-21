@@ -41,6 +41,7 @@ erDiagram
         BIGINT counterparty_account_id FK "references account.id"
         TransactionType type "DEPOSIT | WITHDRAWAL | TRANSFER_OUT | TRANSFER_IN | WIRE_OUT | WIRE_IN"
         NUMERIC amount
+        NUMERIC resulting_balance
         BIGINT initiated_by_employee_id FK "references employee.id"
         TIMESTAMPTZ created_at
     }
