@@ -4,7 +4,7 @@ title: Banking Model/Entity Relationships
 ---
 erDiagram
     CUSTOMER ||--o{ ACCOUNT : owns
-    EMPLOYEE }|--o{ ACCOUNT : manages
+
     CUSTOMER{
         long customerId PK
         string firstName
