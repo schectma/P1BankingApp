@@ -1,10 +1,14 @@
-package com.p1g8.banking.Model;
+package com.p1g8.banking.model;
+
+import java.time.Instant;
 
 public class Log {
-    private int employeeId;
-    private int customerId;
-    private int accountId;
-    
-    private String timestamp;
+    private long employeeId;
+    private long customerId;
+    private long accountId;
+
+    private TransactionType transactionType;
+
     private String details;
+    private Instant createdAt;
 }
