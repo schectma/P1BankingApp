@@ -4,13 +4,13 @@ import java.time.Instant;
 import java.util.List;
 
 public class AccountNote {
-    private long id;
-    private long accountId;
-    private long employeeId;
-    private String text;
-    private List<String> tags;
-    private Long relatedTransactionId;
-    private Instant createdAt;
+    private final long id;
+    private final long accountId;
+    private final long employeeId;
+    private final String text;
+    private final List<String> tags;
+    private final Long relatedTransactionId;
+    private final Instant createdAt;
 
     public AccountNote(long id, long accountId, long employeeId, String text, List<String> tags, Long relatedTransactionId, Instant createdAt) {
         this.id = id;
