@@ -50,7 +50,7 @@ erDiagram
         BIGINT employee_id "logical reference to employee.id"
         BIGINT related_transaction_id "logical reference to transaction.id"
         VARCHAR note_text
-        STRING[] tags
+        TEXT[] tags
         TIMESTAMPTZ created_at
     }
 ```
