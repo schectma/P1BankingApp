@@ -4,6 +4,11 @@ title: Banking Model/Entity Relationships
 ---
 erDiagram
     CUSTOMER ||--o{ ACCOUNT : owns
+    ACCOUNT ||--o{ TRANSACTION : records
+    EMPLOYEE o|--o{ TRANSACTION : initiates
+    ACCOUNT ||..o{ NOTE : referenced_by
+    EMPLOYEE ||..o{ NOTE : authored
+    TRANSACTION o|..o{ NOTE : referenced
 
     CUSTOMER{
         BIGINT id PK
@@ -40,12 +45,17 @@ erDiagram
         TIMESTAMPTZ created_at
     }
     NOTE{
-        int noteId PK,UK
-        long accountId FK
-        long employeeId FK
-        long transactionId
-        text content
-        text tags[]
-        date createdAt
+        BIGINT id PK
+        BIGINT account_id "logical reference to account.id"
+        BIGINT employee_id "logical reference to employee.id"
+        BIGINT related_transaction_id "logical reference to transaction.id"
+        NoteCategory category "GENERAL | WIRE_TRANSFER | SUSPICIOUS_ACTIVITY | CUSTOMER_CONTACT"
+        VARCHAR note_text
+        STRING[] tags
+        TIMESTAMPTZ created_at
     }
 ```
+
+Solid relationships represent PostgreSQL foreign keys.
+Dashed relationships represent MongoDB logical references
+stored as PostgreSQL IDs inside Mongo documents.
