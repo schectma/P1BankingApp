@@ -49,7 +49,6 @@ erDiagram
         BIGINT account_id "logical reference to account.id"
         BIGINT employee_id "logical reference to employee.id"
         BIGINT related_transaction_id "logical reference to transaction.id"
-        NoteCategory category "GENERAL | WIRE_TRANSFER | SUSPICIOUS_ACTIVITY | CUSTOMER_CONTACT"
         VARCHAR note_text
         STRING[] tags
         TIMESTAMPTZ created_at
