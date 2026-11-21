@@ -9,6 +9,9 @@ erDiagram
     ACCOUNT ||..o{ NOTE : referenced_by
     EMPLOYEE ||..o{ NOTE : authored
     TRANSACTION o|..o{ NOTE : referenced
+    EMPLOYEE ||..o{ ACTIVITY_LOG : performs
+    CUSTOMER o|..o{ ACTIVITY_LOG : affects
+    ACCOUNT o|..o{ ACTIVITY_LOG : affects
 
     CUSTOMER{
         BIGINT id PK
@@ -52,6 +55,15 @@ erDiagram
         BIGINT related_transaction_id "logical reference to transaction.id"
         TEXT note_text
         TEXT[] tags
+        TIMESTAMPTZ created_at
+    }
+    ACTIVITY_LOG{
+        BIGINT id PK
+        BIGINT employee_id "logical reference to employee.id"
+        VARCHAR action_type
+        BIGINT affected_account_id "logical reference to account.id"
+        BIGINT affected_customer_id "logical reference to customer.id"
+        TEXT details
         TIMESTAMPTZ created_at
     }
 ```
