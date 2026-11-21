@@ -30,4 +30,13 @@ erDiagram
         VARCHAR password_hash
         TIMESTAMPTZ created_at
     }
+    TRANSACTION{
+        BIGINT id PK
+        BIGINT account_id FK "references account.id"
+        BIGINT counterparty_account_id FK "references account.id"
+        TransactionType type "DEPOSIT | WITHDRAWAL | TRANSFER_OUT | TRANSFER_IN | WIRE_OUT | WIRE_IN"
+        NUMERIC amount
+        BIGINT initiated_by_employee_id FK "references employee.id"
+        TIMESTAMPTZ created_at
+    }
 ```
