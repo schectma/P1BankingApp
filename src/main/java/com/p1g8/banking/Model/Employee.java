@@ -10,14 +10,11 @@ public class Employee {
 
    private String passwordHash;
 
-   private boolean active;
-
    private Instant createdAt;
 
    @Override
    public String toString(){
       return "Employee[Id = " + employeeId + ", firstName = " + firstName +
-            ", lastName = " + lastName + ", user = " + userName +
-            ", active = " + active + "]";
+            ", lastName = " + lastName + ", user = " + userName + "]";
    }
 }
