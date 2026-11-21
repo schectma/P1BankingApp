@@ -4,22 +4,31 @@ title: Banking Model/Entity Relationships
 ---
 erDiagram
     CUSTOMER ||--o{ ACCOUNT : owns
+
     CUSTOMER{
-        long customerId PK
-        string firstName
-        string lastName
-        string username
-        string password
-        timestamptz createdAt
+        BIGINT id PK
+        VARCHAR first_name
+        VARCHAR last_name
+        VARCHAR user_name UK
+        VARCHAR password_hash 
+        TIMESTAMPTZ created_at
     }
     ACCOUNT{
-        long accountId PK
-        long customerId FK
-        string accountNumber
-        AccountType type
-        numeric balance
-        AccountStatus status
-        timestamptz createdAt
+        BIGINT id PK
+        BIGINT customer_id FK
+        VARCHAR account_number
+        AccountType type "CHECKING | SAVINGS"
+        NUMERIC balance
+        AccountStatus status "ACTIVE | FROZEN | CLOSED"
+        TIMESTAMPTZ created_at
+    }
+    EMPLOYEE{
+        BIGINT id PK
+        VARCHAR first_name
+        VARCHAR last_name
+        VARCHAR user_name UK
+        VARCHAR password_hash
+        TIMESTAMPTZ created_at
     }
     EMPLOYEE{
         long employeeId PK
