@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS employees (
     first_Name VARCHAR(120) NOT NULL,
     last_Name VARCHAR(120) NOT NULL,
     userName VARCHAR(120) NOT NULL,
-    password VARCHAR(120) NOT NULl,
+    password_hash VARCHAR(120) NOT NULl,
     created_At timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
