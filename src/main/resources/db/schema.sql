@@ -4,7 +4,7 @@
 
 CREATE TABLE IF NOT EXISTS customers (
     id BIGSERIAL PRIMARY KEY,
-    first_Name VARCHAR(120) NOT NULL,
+    first_name VARCHAR(120) NOT NULL,
     last_Name VARCHAR(120) NOT NULL,
     user_Name VARCHAR(120) UNIQUE,
     password_hash VARCHAR(120) NOT NULl,
