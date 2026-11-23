@@ -1,16 +1,17 @@
 package com.p1g8.banking.model;
 
+import java.time.Instant;
+
 public class Transaction {
     private int transactionId;
 
-    private int originAccountId;
-    private int desintationAccountId;
+    private int accountId;
+    private int counterpartyAccountId;
 
     TransactionType type;
     private double amount;
+    private double resultingBalance;
 
-    private String date;
-
-    private Boolean status;
-    private String note;
+    private long initiatedByEmployeeId;
+    private Instant createdAt;
 }
