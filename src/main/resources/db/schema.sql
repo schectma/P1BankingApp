@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS employees (
     last_Name VARCHAR(120) NOT NULL,
     user_name VARCHAR(120) NOT NULL UNIQUE,
     password_hash VARCHAR(120) NOT NULl,
-    created_At timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP
+    created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Bank Accounts
