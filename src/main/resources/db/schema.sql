@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS bank_accounts (
     account_type VARCHAR(20) NOT NULL,
     balance NUMERIC(19, 2) NOT NULL DEFAULT 0,
     status VARCHAR (20) NOT NULL DEFAULT 'ACTIVE',
-    created_AT timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
     status_changed_by_employee_id BIGINT REFERENCES employees(id),
     status_changed_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
