@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS customers (
 CREATE TABLE IF NOT EXISTS employees (
     id BIGSERIAL PRIMARY KEY,
     first_name VARCHAR(120) NOT NULL,
-    last_Name VARCHAR(120) NOT NULL,
+    last_name VARCHAR(120) NOT NULL,
     user_name VARCHAR(120) NOT NULL UNIQUE,
     password_hash VARCHAR(120) NOT NULl,
     created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP
