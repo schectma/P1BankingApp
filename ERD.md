@@ -21,7 +21,7 @@ erDiagram
     ACCOUNT{
         BIGINT id PK
         BIGINT customer_id FK
-        VARCHAR account_number
+        VARCHAR account_number UK
         AccountType type "CHECKING | SAVINGS"
         NUMERIC balance
         AccountStatus status "ACTIVE | FROZEN | CLOSED"
@@ -41,6 +41,7 @@ erDiagram
         BIGINT counterparty_account_id FK "references account.id"
         TransactionType type "DEPOSIT | WITHDRAWAL | TRANSFER_OUT | TRANSFER_IN | WIRE_OUT | WIRE_IN"
         NUMERIC amount
+        NUMERIC resulting_balance
         BIGINT initiated_by_employee_id FK "references employee.id"
         TIMESTAMPTZ created_at
     }
@@ -49,7 +50,7 @@ erDiagram
         BIGINT account_id "logical reference to account.id"
         BIGINT employee_id "logical reference to employee.id"
         BIGINT related_transaction_id "logical reference to transaction.id"
-        VARCHAR note_text
+        TEXT note_text
         TEXT[] tags
         TIMESTAMPTZ created_at
     }
