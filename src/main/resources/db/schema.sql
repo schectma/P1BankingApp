@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS customers (
     id BIGSERIAL PRIMARY KEY,
     first_name VARCHAR(120) NOT NULL,
     last_Name VARCHAR(120) NOT NULL,
-    user_Name VARCHAR(120) UNIQUE,
+    user_name VARCHAR(120) UNIQUE,
     password_hash VARCHAR(120) NOT NULl,
     created_At timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
