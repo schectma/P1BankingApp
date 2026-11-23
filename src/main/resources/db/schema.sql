@@ -47,7 +47,6 @@ CREATE TABLE IF NOT EXISTS transactions (
     amount NUMERIC(19, 2) NOT NULL CHECK (amount >0),
     resulting_balance NUMERIC(19,2) NOT NULL CHECK (resulting_balance >=0),
     counterparty_account_id BIGINT REFERENCES bank_accounts(id),
-    description VARCHAR(500),
     initiated_by_employee_id BIGINT REFERENCES employees (id),
     created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CHECK (counterparty_account_id IS NULL OR counterparty_account_id <> account_id), -- != is not equal
