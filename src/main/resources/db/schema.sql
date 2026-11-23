@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS employees (
 CREATE TABLE IF NOT EXISTS bank_accounts (
     id BIGSERIAL PRIMARY KEY,
     customer_id BIGINT NOT NULL REFERENCES customers(id),
-    account_Number VARCHAR(20) NOT NULL UNIQUE,
+    account_number VARCHAR(20) NOT NULL UNIQUE,
     account_type VARCHAR(20) NOT NULL,
     balance NUMERIC(19, 2) NOT NULL DEFAULT 0,
     status VARCHAR (20) NOT NULL DEFAULT 'ACTIVE',
