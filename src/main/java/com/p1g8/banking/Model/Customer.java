@@ -1,7 +1,7 @@
 package com.p1g8.banking.model;
 
 public class Customer{
-    private int customerId;
+    private long customerId;
 
     private String firstName;
     private String lastName;
