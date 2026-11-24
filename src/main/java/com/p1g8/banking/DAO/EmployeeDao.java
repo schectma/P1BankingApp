@@ -11,6 +11,5 @@ public interface EmployeeDao {
     Optional<Employee> findById(long employeeId);
     Optional<Employee> findByUserName(String userName);
     Employee update(Employee employee);
-    boolean deleteById(long employeeId);
 
 }
