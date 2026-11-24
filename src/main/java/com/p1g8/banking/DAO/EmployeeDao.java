@@ -10,6 +10,5 @@ public interface EmployeeDao {
     Employee create (Employee employee);
     Optional<Employee> findById(long employeeId);
     Optional<Employee> findByUserName(String userName);
-    Employee update(Employee employee);
 
 }
