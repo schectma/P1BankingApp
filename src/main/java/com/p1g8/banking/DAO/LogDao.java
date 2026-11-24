@@ -14,5 +14,4 @@ public interface LogDao {
     Optional<Log> findByCustomerId(long customerId);
     List<Log> findByTransactionType(TransactionType transactionType);
     List<Log> findByDateRange(Instant start, Instant end);
-    List<Log> findAll();
 }
