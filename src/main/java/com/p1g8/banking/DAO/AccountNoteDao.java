@@ -10,5 +10,4 @@ public interface AccountNoteDao {
     List<AccountNote> findByAccountId(long accountId);
     List<AccountNote> findByFilter(NoteFilter filter);
     AccountNote update(AccountNote note);
-    boolean deleteById(String id);
 }
