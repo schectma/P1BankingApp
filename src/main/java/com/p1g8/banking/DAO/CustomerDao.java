@@ -7,7 +7,6 @@ public interface CustomerDao {
     Customer create(Customer customer);
     Optional<Customer> findById(long customerId);
     Optional<Customer> findByUsername(String username);
-    List<Customer> findAll();
-    Customer update(Customer customer);
-    boolean deleteById(long customerId);
+    boolean updateUsername(long customerId, String username);
+    boolean updatePassword(long customerId, String passwordHash);
 }
