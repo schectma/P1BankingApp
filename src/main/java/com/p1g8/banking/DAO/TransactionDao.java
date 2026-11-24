@@ -15,5 +15,4 @@ public interface TransactionDao {
     List<Transaction> findByEmployeeId(long employeeId);
     List<Transaction> findByDateRange(long accountId, Instant start, Instant end);
     List<Transaction> findByAccountIdAndType(long accountId, TransactionType type);
-    List<Transaction> findAll();
 }
