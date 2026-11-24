@@ -5,14 +5,16 @@ import com.p1g8.banking.model.AccountStatus;
 
 import java.util.List;
 import java.util.Optional;
+import java.math.BigDecimal;
 
 public interface AccountDao {
     BankAccount create(BankAccount account);
-    Optional<BankAccount> findById(long id);
+    Optional<BankAccount> findById(long accountId);
     List<BankAccount> findByCustomerId(long customerId);
     List<BankAccount> findByStatus(AccountStatus status);
     List<BankAccount> findAll();
     BankAccount update(BankAccount account);
     boolean updateStatus(long accountId, AccountStatus status);
+    boolean updateBalance(long accountId, BigDecimal balance);
     boolean deleteById(long accountId);
 }
