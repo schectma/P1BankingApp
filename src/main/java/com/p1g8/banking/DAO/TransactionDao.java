@@ -13,6 +13,6 @@ public interface TransactionDao {
     Optional<Transaction> findById(long transactionId);
     List<Transaction> findByAccountId(long accountId);
     List<Transaction> findByEmployeeId(long employeeId);
-    List<Transaction> findByDateRange(long accountId, Instant start, Instant end);
+    List<Transaction> findByAccountIdAndDateRange(long accountId, Instant start, Instant end);
     List<Transaction> findByAccountIdAndType(long accountId, TransactionType type);
 }
