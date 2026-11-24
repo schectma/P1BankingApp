@@ -10,7 +10,6 @@ public interface EmployeeDao {
     Employee create (Employee employee);
     Optional<Employee> findById(long employeeId);
     Optional<Employee> findByUserName(String userName);
-    List<Employee> findAll();
     Employee update(Employee employee);
     boolean deleteById(long employeeId);
 
