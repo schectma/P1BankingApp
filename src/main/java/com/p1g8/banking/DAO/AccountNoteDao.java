@@ -9,5 +9,4 @@ public interface AccountNoteDao {
     AccountNote create(AccountNote note);
     List<AccountNote> findByAccountId(long accountId);
     List<AccountNote> findByFilter(NoteFilter filter);
-    AccountNote update(AccountNote note);
 }
