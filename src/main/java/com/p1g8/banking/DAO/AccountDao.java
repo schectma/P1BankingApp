@@ -12,9 +12,6 @@ public interface AccountDao {
     Optional<BankAccount> findById(long accountId);
     Optional<BankAccount> findByAccountNumber(String accountNumber);
     List<BankAccount> findByCustomerId(long customerId);
-    List<BankAccount> findByStatus(AccountStatus status);
-    List<BankAccount> findAll();
-    BankAccount update(BankAccount account);
     boolean updateStatus(long accountId, AccountStatus status);
     boolean updateBalance(long accountId, BigDecimal balance);
     boolean deleteById(long accountId);
