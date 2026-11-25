@@ -10,7 +10,6 @@ public interface LogDao {
     Log Create (Log log);
     Optional<Log> findByAccountId(long accountId);
     Optional<Log> findByEmployeeId(long employeeId);
-    Optional<Log> findByCustomerId(long customerId);
     List<Log> findByTransactionType(TransactionType transactionType);
     List<Log> findByDateRange(Instant start, Instant end);
 }
