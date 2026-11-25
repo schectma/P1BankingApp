@@ -11,5 +11,8 @@ public interface LogDao {
     Optional<Log> findByAccountId(long accountId);
     Optional<Log> findByEmployeeId(long employeeId);
     List<Log> findByTransactionType(TransactionType transactionType);
+    List<Log> findByAccount(Long accountId);
+    List<Log> findByEmployee(Long employeeId);
+    List<Log> findByActionType(ActionType type);
     List<Log> findByDateRange(Instant start, Instant end);
 }
