@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface LogDao {
     Log Create (Log log);
-    Optional<Log> findByAccountId(long accountId);
-    Optional<Log> findByEmployeeId(long employeeId);
+    List<Log> findByAccountId(long accountId);
+    List<Log> findByEmployeeId(long employeeId);
     List<Log> findByActionType(actionType type);
     List<Log> findByAccount(Long accountId);
     List<Log> findByEmployee(Long employeeId);
