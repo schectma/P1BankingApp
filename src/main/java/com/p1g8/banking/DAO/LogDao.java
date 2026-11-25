@@ -5,7 +5,6 @@ import com.p1g8.banking.model.TransactionType;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.Optional;
 
 public interface LogDao {
     Log Create (Log log);
