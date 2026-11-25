@@ -1,6 +1,6 @@
 # TRNG-2499 Group 8 Team Working Agreement
 
-**Revision:** 262511
+**Revision:** 261125
 **Effective Date:** 2026-11-25
 **Project:** P1 Banking App
 **Team Members:** Alex Schectman, Santosh Subedi
