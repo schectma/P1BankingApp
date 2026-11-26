@@ -26,4 +26,28 @@ public class Employee {
       return "Employee[Id = " + employeeId + ", firstName = " + firstName +
             ", lastName = " + lastName + ", user = " + userName + "]";
    }
+
+    public long getEmployeeId() {
+        return employeeId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
 }
