@@ -1,8 +1,11 @@
 package com.p1g8.banking.dao.postgres;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Optional;
 import java.util.Properties;
+import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,11 +30,13 @@ public class PostgresCustomerDaoTest {
 
         dao = new PostgresCustomerDao(provider);
 
+        String uniqueUsername = "test_" + UUID.randomUUID();
+
         customer = new Customer(
                 0,
                 "firtus",
                 "lastem",
-                "userus",
+                uniqueUsername,
                 "passhash"
         );
     }
