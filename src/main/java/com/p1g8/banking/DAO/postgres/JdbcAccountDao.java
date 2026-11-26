@@ -9,8 +9,6 @@ import com.p1g8.banking.model.AccountType;
 import com.p1g8.banking.model.BankAccount;
 import org.postgresql.util.PSQLState;
 
-import javax.sql.DataSource;
-import javax.xml.crypto.Data;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
