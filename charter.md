@@ -1,7 +1,7 @@
 # TRNG-2499 Group 8 Team Working Agreement
 
-**Version:** 1.0  
-**Effective Date:** 2026-11-25  
+**Revision:** 261125
+**Effective Date:** 2026-11-25
 **Project:** P1 Banking App
 **Team Members:** Alex Schectman, Santosh Subedi
 
@@ -13,7 +13,7 @@ This agreement establishes expectations and procedures for communication, decisi
 
 The objective of this agreement is to ensure steady project progress, reduce avoidable delays, and provide a clear process for resolving blockers and making decisions when time-sensitive action is required.
 
-__Both team members acknowledge that successful, timely project completion is the team's primary objective.__
+__All team members acknowledge that successful, timely project completion is the team's primary objective.__
 
 ---
 
@@ -90,10 +90,10 @@ __Project progress will not remain indefinitely blocked awaiting input.__
 
 An inactive or non-responsive member shall not be considered to have disagreed. __Silence is not disagreement.__
 
-Should both members actively disagree on a decision:
+Should two or more members actively disagree on a decision:
 
 - discussion should continue in good faith (see [section 1](#1-purpose));
-- both parties should present technical or project-based justification; and
+- all involved parties should present technical or project-based justification; and
 - neither member may claim unilateral authority solely because agreement has not yet been reached.
 
 ---
@@ -112,13 +112,18 @@ Examples include:
 - testing efforts
 - documentation
 
+Each team member may only claim a maximum of three (3) adjacent issues/tasks simultaneously. This may only be extended to fully-encapsulating parent issues. Examples:
+
+- if a parent issue has four sub-issues, any one team member can claim up to three of those sub-issues, but not the parent issue.
+- if a parent issue has three sub-issues, any one team member can claim up to all three of those sub-issues, plus the parent issue itself.
+
 Ownership and task assignment protocol exists to prevent duplicate effort and improve accountability.
 
 ---
 
 ## 4.2 Abandoned Work
 
-If work appears stalled and no meaningful status update through any approved channel has been provided for at least **six (6) hours**, either member may assume responsibility for completing, revising, or replacing that work.
+If work appears stalled and no meaningful status update through any approved channel has been provided for at least **six (6) hours**, any member may assume responsibility for completing, revising, or replacing that work.
 
 ---
 
@@ -235,7 +240,7 @@ The intent of this provision is to prevent project stagnation and ensure continu
 
 # 9. Good Faith Clause
 
-Both team members agree to:
+All team members agree to:
 
 - act in the project's best interests
 - communicate honestly and professionally
