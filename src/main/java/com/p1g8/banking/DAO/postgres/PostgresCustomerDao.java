@@ -51,7 +51,9 @@ public class PostgresCustomerDao implements CustomerDao {
                 );
             }
         } catch (SQLException e) {
-            throw new DataAccessException("Failed to create customer", e);
+            throw new IllegalStateException(
+                "INSERT succeeded but no generated id was returned"
+            );
         }
     }
 
@@ -59,6 +61,7 @@ public class PostgresCustomerDao implements CustomerDao {
     public Optional<Customer> findById(long customerId) {
         throw new UnsupportedOperationException();
     }
+
     public Optional<Customer> findByUsername(String username){
         throw new UnsupportedOperationException();
     }
