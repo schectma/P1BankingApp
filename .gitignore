@@ -3,3 +3,4 @@ target/
 .vscode/
 *.iml
 atlas-credentials.env
+src/main/java/com/p1g8/banking/service/application.properties
