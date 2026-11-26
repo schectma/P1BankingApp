@@ -1,4 +1,4 @@
-package com.p1g8.banking.DAO.postgres;
+package com.p1g8.banking.dao.postgres;
 
 import com.p1g8.banking.config.ConnectionProvider;
 import com.p1g8.banking.dao.AccountDao;
