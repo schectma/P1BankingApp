@@ -54,7 +54,7 @@ public class JdbcAccountDao implements AccountDao {
             if (PSQLState.UNIQUE_VIOLATION.getState().equals(e.getSQLState())) {
                 throw new DuplicateDataException("Account Number already exists", e);
             }
-            throw new DuplicateDataException("Failed to create bank account", e);
+            throw new DataAccessException("Failed to create bank account", e);
         }
     }
      // Find account by ID
