@@ -1,11 +1,15 @@
-package com.p1g8.banking.Model;
+package com.p1g8.banking.model;
+
+import java.time.Instant;
 
 public class Customer{
-    private int customerId;
+    private long customerId;
 
     private String firstName;
     private String lastName;
 
     private String username;
-    private String password;
+    private String passwordHash;
+
+    private Instant createdAt;
 }

@@ -4,22 +4,22 @@
 
 CREATE TABLE IF NOT EXISTS customers (
     id BIGSERIAL PRIMARY KEY,
-    first_Name VARCHAR(120) NOT NULL,
-    last_Name VARCHAR(120) NOT NULL,
-    user_Name VARCHAR(120) NOT NULL UNIQUE,
-    password VARCHAR(120) NOT NULl,
-    created_At timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP
+    first_name VARCHAR(120) NOT NULL,
+    last_name VARCHAR(120) NOT NULL,
+    user_name VARCHAR(120) NOT NULL UNIQUE,
+    password_hash VARCHAR(120) NOT NULl,
+    created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 --Employees
 
 CREATE TABLE IF NOT EXISTS employees (
     id BIGSERIAL PRIMARY KEY,
-    first_Name VARCHAR(120) NOT NULL,
-    last_Name VARCHAR(120) NOT NULL,
-    userName VARCHAR(120) NOT NULL,
-    password VARCHAR(120) NOT NULl,
-    created_At timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP
+    first_name VARCHAR(120) NOT NULL,
+    last_name VARCHAR(120) NOT NULL,
+    user_name VARCHAR(120) NOT NULL UNIQUE,
+    password_hash VARCHAR(120) NOT NULl,
+    created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Bank Accounts
@@ -27,11 +27,11 @@ CREATE TABLE IF NOT EXISTS employees (
 CREATE TABLE IF NOT EXISTS bank_accounts (
     id BIGSERIAL PRIMARY KEY,
     customer_id BIGINT NOT NULL REFERENCES customers(id),
-    account_Number VARCHAR(20) NOT NULL UNIQUE,
-    account_type VARCHAR(20) NOT NULL,
+    account_number VARCHAR(20) NOT NULL UNIQUE,
+    account_type VARCHAR(20) NOT NULL CHECK (account_type IN ('CHECKING', 'SAVINGS')),
     balance NUMERIC(19, 2) NOT NULL DEFAULT 0 CHECK (balance >=0),
-    status VARCHAR (20) NOT NULL DEFAULT 'ACTIVE',
-    created_AT timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR (20) NOT NULL DEFAULT 'ACTIVE' CHECK (status IN ('ACTIVE', 'FROZEN', 'CLOSED')),
+    created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
     status_changed_by_employee_id BIGINT REFERENCES employees(id),
     status_changed_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -47,7 +47,6 @@ CREATE TABLE IF NOT EXISTS transactions (
     amount NUMERIC(19, 2) NOT NULL CHECK (amount > 0),
     resulting_balance NUMERIC(19,2) NOT NULL CHECK (resulting_balance >=0),
     counterparty_account_id BIGINT REFERENCES bank_accounts(id),
-    description VARCHAR(500),
     initiated_by_employee_id BIGINT REFERENCES employees (id),
     created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CHECK (counterparty_account_id IS NULL OR counterparty_account_id <> account_id), -- != is not equal
