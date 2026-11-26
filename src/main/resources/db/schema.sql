@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS customers (
     id BIGSERIAL PRIMARY KEY,
     first_name VARCHAR(120) NOT NULL,
     last_name VARCHAR(120) NOT NULL,
-    user_name VARCHAR(120) UNIQUE,
+    user_name VARCHAR(120) NOT NULL UNIQUE,
     password_hash VARCHAR(120) NOT NULl,
     created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS bank_accounts (
     customer_id BIGINT NOT NULL REFERENCES customers(id),
     account_number VARCHAR(20) NOT NULL UNIQUE,
     account_type VARCHAR(20) NOT NULL CHECK (account_type IN ('CHECKING', 'SAVINGS')),
-    balance NUMERIC(19, 2) NOT NULL DEFAULT 0,
+    balance NUMERIC(19, 2) NOT NULL DEFAULT 0 CHECK (balance >=0),
     status VARCHAR (20) NOT NULL DEFAULT 'ACTIVE' CHECK (status IN ('ACTIVE', 'FROZEN', 'CLOSED')),
     created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
     status_changed_by_employee_id BIGINT REFERENCES employees(id),
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS transactions (
     id BIGSERIAL PRIMARY KEY,
     account_id BIGINT NOT NULL REFERENCES bank_accounts(id),
     transaction_type VARCHAR(20) NOT NULL CHECK (transaction_type IN ('DEPOSIT', 'WITHDRAWAL', 'TRANSFER_OUT', 'TRANSFER_IN', 'WIRE_OUT', 'WIRE_IN')),
-    amount NUMERIC(19, 2) NOT NULL CHECK (amount >0),
+    amount NUMERIC(19, 2) NOT NULL CHECK (amount > 0),
     resulting_balance NUMERIC(19,2) NOT NULL CHECK (resulting_balance >=0),
     counterparty_account_id BIGINT REFERENCES bank_accounts(id),
     initiated_by_employee_id BIGINT REFERENCES employees (id),
