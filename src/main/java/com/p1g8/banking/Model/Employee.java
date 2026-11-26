@@ -1,4 +1,4 @@
-package com.p1g8.banking.model;
+package com.p1g8.banking.Model;
 
 import java.time.Instant;
 
@@ -10,7 +10,16 @@ public class Employee {
 
    private String passwordHash;
 
-   private Instant createdAt;
+    public Employee(long employeeId, String firstName, String lastName, String userName, String passwordHash, Instant createdAt) {
+        this.employeeId = employeeId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.passwordHash = passwordHash;
+        this.createdAt = createdAt;
+    }
+
+    private Instant createdAt;
 
    @Override
    public String toString(){
