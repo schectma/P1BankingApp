@@ -4,7 +4,7 @@ import com.p1g8.banking.config.ConnectionProvider;
 import com.p1g8.banking.config.PostgresConnectionProvider;
 import com.p1g8.banking.config.PropertiesLoader;
 import com.p1g8.banking.exception.DataAccessException;
-import com.p1g8.banking.Model.Employee;
+import com.p1g8.banking.model.Employee;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
