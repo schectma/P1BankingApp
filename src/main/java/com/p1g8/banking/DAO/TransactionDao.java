@@ -1,4 +1,4 @@
-package com.p1g8.banking.DAO;
+package com.p1g8.banking.dao;
 
 import com.p1g8.banking.model.Transaction;
 import com.p1g8.banking.model.TransactionType;

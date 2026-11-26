@@ -1,6 +1,6 @@
 package com.p1g8.banking.dao.postgres;
 
-import com.p1g8.banking.DAO.postgres.JdbcAccountDao;
+import com.p1g8.banking.dao.postgres.JdbcAccountDao;
 import com.p1g8.banking.config.ConnectionProvider;
 import com.p1g8.banking.config.PostgresConnectionProvider;
 import com.p1g8.banking.config.PropertiesLoader;

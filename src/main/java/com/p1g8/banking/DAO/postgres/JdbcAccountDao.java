@@ -1,4 +1,4 @@
-package com.p1g8.banking.DAO.postgres;
+package com.p1g8.banking.dao.postgres;
 
 import com.p1g8.banking.config.ConnectionProvider;
 import com.p1g8.banking.dao.AccountDao;
@@ -9,11 +9,8 @@ import com.p1g8.banking.model.AccountType;
 import com.p1g8.banking.model.BankAccount;
 import org.postgresql.util.PSQLState;
 
-import javax.sql.DataSource;
-import javax.xml.crypto.Data;
 import java.math.BigDecimal;
 import java.sql.*;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -57,7 +54,7 @@ public class JdbcAccountDao implements AccountDao {
             if (PSQLState.UNIQUE_VIOLATION.getState().equals(e.getSQLState())) {
                 throw new DuplicateDataException("Account Number already exists", e);
             }
-            throw new DuplicateDataException("Failed to create bank account", e);
+            throw new DataAccessException("Failed to create bank account", e);
         }
     }
      // Find account by ID
