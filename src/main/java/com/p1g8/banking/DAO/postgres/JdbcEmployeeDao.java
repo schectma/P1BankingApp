@@ -3,7 +3,7 @@ package com.p1g8.banking.dao.postgres;
 import com.p1g8.banking.config.ConnectionProvider;
 import com.p1g8.banking.dao.EmployeeDao;
 import com.p1g8.banking.exception.DataAccessException;
-import com.p1g8.banking.Model.Employee;
+import com.p1g8.banking.model.Employee;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
