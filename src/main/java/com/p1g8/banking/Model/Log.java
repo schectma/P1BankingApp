@@ -7,7 +7,7 @@ public class Log {
     private long customerId;
     private long accountId;
 
-    private TransactionType transactionType;
+    private ActionType actionType;
 
     private String details;
     private Instant createdAt;
