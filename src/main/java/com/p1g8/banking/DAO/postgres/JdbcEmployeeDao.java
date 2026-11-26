@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
-import com.p1g8.banking.dao.EmployeeDao;
 
 public class JdbcEmployeeDao implements EmployeeDao {
     private final ConnectionProvider connectionProvider;
