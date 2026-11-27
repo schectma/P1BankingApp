@@ -7,7 +7,7 @@ import java.time.Instant;
 import java.util.List;
 
 public interface LogDao {
-    Log Create (Log log);
+    Log create(Log log);
     List<Log> findByAccountId(long accountId);
     List<Log> findByEmployeeId(long employeeId);
     List<Log> findByActionType(ActionType type);
