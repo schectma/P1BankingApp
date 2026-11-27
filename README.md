@@ -61,3 +61,25 @@ private Customer mapRow(ResultSet rs) throws SQLException {
   );
 }
 ```
+# Data Access Conventions
+## Exceptions
+MongoDB driver exceptions are caught and wrapped in
+DataAccessException.
+## Mapping
+Java Model ↔ Mongo Document
+
+toDocument()
+    converts model objects into BSON Documents
+
+fromDocument()
+    converts BSON Documents into model objects
+
+Instant is stored as java.util.Date
+when persisted to MongoDB.
+
+## Object ID
+{
+    "id": 123,
+    ...
+}
+*Not* `{"_id": ObjectId(...)}`
