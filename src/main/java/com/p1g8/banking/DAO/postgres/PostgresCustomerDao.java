@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import com.p1g8.banking.config.ConnectionProvider;
 import com.p1g8.banking.dao.CustomerDao;
+import com.p1g8.banking.exception.DataAccessException;
 import com.p1g8.banking.model.Customer;
 
 public class PostgresCustomerDao implements CustomerDao {
@@ -56,9 +57,53 @@ public class PostgresCustomerDao implements CustomerDao {
         }
     }
 
+    private Customer mapRow(ResultSet rs) throws SQLException {
+        return new Customer(
+                rs.getLong("id"),
+                rs.getString("first_name"),
+                rs.getString("last_name"),
+                rs.getString("user_name"),
+                rs.getString("password_hash")
+        );
+    }
+
     @Override
-    public Optional<Customer> findById(long customerId) {
-        throw new UnsupportedOperationException();
+    public Optional<Customer> findById(
+            long customerId) {
+
+        String sql = """
+            SELECT *
+            FROM customers
+            WHERE id = ?
+            """;
+
+        try (
+                Connection conn =
+                        connectionProvider.getConnection();
+
+                PreparedStatement stmt =
+                        conn.prepareStatement(sql)
+        ) {
+
+            stmt.setLong(
+                    1,
+                    customerId);
+
+            ResultSet rs =
+                    stmt.executeQuery();
+
+            if (!rs.next()) {
+                return Optional.empty();
+            }
+
+            return Optional.of(mapRow(rs));
+
+        } catch (SQLException e) {
+
+            throw new DataAccessException(
+                    "Failed finding customer",
+                    e);
+        }
     }
 
     public Optional<Customer> findByUsername(String username){

@@ -2,6 +2,7 @@ package com.p1g8.banking.dao.postgres;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.Optional;
 import java.util.Properties;
@@ -45,5 +46,36 @@ public class PostgresCustomerDaoTest {
     void createReturnsGeneratedId() {
         Customer created = dao.create(customer);
         assertTrue(created.getCustomerId() > 0);
+    }
+
+    /* findById() */
+
+    @Test
+    void findByIdReturnsCustomer() {
+
+        Customer created = dao.create(customer);
+
+        Optional<Customer> found =dao.findById(
+            created.getCustomerId());
+
+        assertTrue(found.isPresent());
+
+        Customer retrieved = found.get();
+
+        assertEquals(
+            created.getCustomerId(),
+            retrieved.getCustomerId());
+
+        assertEquals(
+            customer.getUsername(),
+            retrieved.getUsername());
+    }
+
+    @Test
+    void findByIdReturnsEmptyWhenCustomerMissing() {
+
+        Optional<Customer> found = dao.findById(Long.MAX_VALUE);
+
+        assertFalse(found.isPresent());
     }
 }
