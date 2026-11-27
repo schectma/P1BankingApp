@@ -86,20 +86,19 @@ public class PostgresCustomerDaoTest {
         Customer created = dao.create(customer);
 
         Optional<Customer> found =
-                dao.findByUsername(
-                        created.getUsername());
+            dao.findByUsername(created.getUsername());
 
         assertTrue(found.isPresent());
 
         Customer retrieved = found.get();
 
         assertEquals(
-                created.getCustomerId(),
-                retrieved.getCustomerId());
+            created.getCustomerId(),
+            retrieved.getCustomerId());
 
         assertEquals(
-                created.getUsername(),
-                retrieved.getUsername());
+            created.getUsername(),
+            retrieved.getUsername());
     }
 
     @Test
