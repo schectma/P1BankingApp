@@ -3,6 +3,7 @@ package com.p1g8.banking.dao.postgres;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Optional;
 import java.util.Properties;
@@ -14,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import com.p1g8.banking.config.ConnectionProvider;
 import com.p1g8.banking.config.PostgresConnectionProvider;
 import com.p1g8.banking.config.PropertiesLoader;
+import com.p1g8.banking.exception.DataAccessException;
 import com.p1g8.banking.model.Customer;
 
 public class PostgresCustomerDaoTest {
@@ -115,10 +117,12 @@ public class PostgresCustomerDaoTest {
 
         Customer created = dao.create(customer);
 
+        String uniqueUsername = "updated_" + UUID.randomUUID();
+
         boolean updated =
             dao.updateUsername(
                 created.getCustomerId(),
-                "updatedUser");
+                uniqueUsername);
 
         assertTrue(updated);
 
@@ -129,7 +133,7 @@ public class PostgresCustomerDaoTest {
         assertTrue(found.isPresent());
 
         assertEquals(
-            "updatedUser",
+            uniqueUsername,
             found.get().getUsername());
     }
 
@@ -142,5 +146,31 @@ public class PostgresCustomerDaoTest {
                 "updatedUser");
 
         assertFalse(updated);
+    }
+
+    @Test
+    void updateUsernameRejectsDuplicateUsername() {
+
+        String uniqueUsername = "updated_" + UUID.randomUUID();
+
+        Customer first = dao.create(customer);
+
+        Customer second = dao.create(
+            new Customer(
+                0,
+                "Second",
+                "User",
+                uniqueUsername,
+                "passhash"
+            )
+        );
+
+        assertThrows(
+            DataAccessException.class,
+            () -> dao.updateUsername(
+                second.getCustomerId(),
+                first.getUsername()
+            )
+        );
     }
 }

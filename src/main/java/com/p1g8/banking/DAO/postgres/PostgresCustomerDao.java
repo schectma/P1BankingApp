@@ -143,7 +143,7 @@ public class PostgresCustomerDao implements CustomerDao {
 
     @Override
     public boolean updateUsername(long customerId, String username) {
-
+        
         String sql = """
             UPDATE customers
             SET user_name = ?
@@ -161,7 +161,6 @@ public class PostgresCustomerDao implements CustomerDao {
             return stmt.executeUpdate() == 1;
 
         } catch (SQLException e) {
-
             throw new DataAccessException(
                 "Failed updating username for customer "
                         + customerId, e
