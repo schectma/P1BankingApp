@@ -47,3 +47,17 @@ Atlas cluster with single database and two collections: `account_notes` and `act
   "details": "Account frozen pending fraud investigation."
 }
 ```
+
+# MongoDB Setup
+# Row Mapping Convention
+
+Each DAO implementation owns its own mapper. E.g.
+```java
+private Customer mapRow(ResultSet rs) throws SQLException {
+  return new Customer(
+    rs.getLong("customer_id"),
+    rs.getString("username"),
+    rs.getString("password_hash")
+  );
+}
+```
