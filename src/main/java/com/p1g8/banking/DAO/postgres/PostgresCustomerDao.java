@@ -136,7 +136,7 @@ public class PostgresCustomerDao implements CustomerDao {
 
             throw new DataAccessException(
                 "Failed finding customer with username: "
-                        + username, e
+                    + username, e
             );
         }
     }
