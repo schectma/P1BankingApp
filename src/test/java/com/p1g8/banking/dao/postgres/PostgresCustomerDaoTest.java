@@ -78,4 +78,34 @@ public class PostgresCustomerDaoTest {
 
         assertFalse(found.isPresent());
     }
+
+    /* findByUsername() */
+    @Test
+    void findByUsernameReturnsCustomer() {
+
+        Customer created = dao.create(customer);
+
+        Optional<Customer> found =
+            dao.findByUsername(created.getUsername());
+
+        assertTrue(found.isPresent());
+
+        Customer retrieved = found.get();
+
+        assertEquals(
+            created.getCustomerId(),
+            retrieved.getCustomerId());
+
+        assertEquals(
+            created.getUsername(),
+            retrieved.getUsername());
+    }
+
+    @Test
+    void findByUsernameReturnsEmptyWhenMissing() {
+        Optional<Customer> found = dao.findByUsername(
+                "definitely_not_a_real_user");
+
+        assertTrue(found.isEmpty());
+    }
 }

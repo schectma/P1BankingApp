@@ -106,9 +106,41 @@ public class PostgresCustomerDao implements CustomerDao {
         }
     }
 
-    public Optional<Customer> findByUsername(String username){
-        throw new UnsupportedOperationException();
+    @Override
+    public Optional<Customer> findByUsername(String username) {
+
+        String sql = """
+            SELECT *
+            FROM customers
+            WHERE user_name = ?
+            """;
+
+        try (
+            Connection conn = connectionProvider.getConnection();
+
+            PreparedStatement stmt = conn.prepareStatement(sql)
+        ) {
+
+            stmt.setString(1, username);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                if (!rs.next()) {
+                    return Optional.empty();
+                }
+
+                return Optional.of(mapRow(rs));
+            }
+
+        } catch (SQLException e) {
+
+            throw new DataAccessException(
+                "Failed finding customer with username: "
+                    + username, e
+            );
+        }
     }
+
     public boolean updateUsername(long customerId, String username){
         throw new UnsupportedOperationException();
     }
