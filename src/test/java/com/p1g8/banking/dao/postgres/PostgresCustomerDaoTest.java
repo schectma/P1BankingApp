@@ -108,4 +108,39 @@ public class PostgresCustomerDaoTest {
 
         assertTrue(found.isEmpty());
     }
+
+    /* updateUsername() */
+    @Test
+    void updateUsernameChangesUsername() {
+
+        Customer created = dao.create(customer);
+
+        boolean updated =
+            dao.updateUsername(
+                created.getCustomerId(),
+                "updatedUser");
+
+        assertTrue(updated);
+
+        Optional<Customer> found =
+            dao.findById(
+                created.getCustomerId());
+
+        assertTrue(found.isPresent());
+
+        assertEquals(
+            "updatedUser",
+            found.get().getUsername());
+    }
+
+    @Test
+    void updateUsernameReturnsFalseWhenCustomerMissing() {
+
+        boolean updated =
+            dao.updateUsername(
+                Long.MAX_VALUE,
+                "updatedUser");
+
+        assertFalse(updated);
+    }
 }
