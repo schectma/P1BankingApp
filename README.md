@@ -83,3 +83,13 @@ when persisted to MongoDB.
     ...
 }
 *Not* `{"_id": ObjectId(...)}`
+
+## Indexes
+account_notes
+- accountId
+- accountId + createdAt
+![alt text](<Screenshot 2026-11-27 164413.png>)
+activity_logs
+- employeeId
+- createdAt
+![alt text](image.png)
