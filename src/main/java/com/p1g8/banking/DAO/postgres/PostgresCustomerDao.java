@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import com.p1g8.banking.config.ConnectionProvider;
 import com.p1g8.banking.dao.CustomerDao;
+import com.p1g8.banking.exception.DataAccessException;
 import com.p1g8.banking.model.Customer;
 
 public class PostgresCustomerDao implements CustomerDao {
@@ -56,18 +57,145 @@ public class PostgresCustomerDao implements CustomerDao {
         }
     }
 
-    @Override
-    public Optional<Customer> findById(long customerId) {
-        throw new UnsupportedOperationException();
+    private Customer mapRow(ResultSet rs) throws SQLException {
+        return new Customer(
+                rs.getLong("id"),
+                rs.getString("first_name"),
+                rs.getString("last_name"),
+                rs.getString("user_name"),
+                rs.getString("password_hash")
+        );
     }
 
-    public Optional<Customer> findByUsername(String username){
-        throw new UnsupportedOperationException();
+    @Override
+    public Optional<Customer> findById(
+            long customerId) {
+
+        String sql = """
+            SELECT *
+            FROM customers
+            WHERE id = ?
+            """;
+
+        try (
+                Connection conn =
+                        connectionProvider.getConnection();
+
+                PreparedStatement stmt =
+                        conn.prepareStatement(sql)
+        ) {
+
+            stmt.setLong(
+                    1,
+                    customerId);
+
+            ResultSet rs =
+                    stmt.executeQuery();
+
+            if (!rs.next()) {
+                return Optional.empty();
+            }
+
+            return Optional.of(mapRow(rs));
+
+        } catch (SQLException e) {
+
+            throw new DataAccessException(
+                    "Failed finding customer",
+                    e);
+        }
     }
-    public boolean updateUsername(long customerId, String username){
-        throw new UnsupportedOperationException();
+
+    @Override
+    public Optional<Customer> findByUsername(String username) {
+
+        String sql = """
+            SELECT *
+            FROM customers
+            WHERE user_name = ?
+            """;
+
+        try (
+            Connection conn = connectionProvider.getConnection();
+
+            PreparedStatement stmt = conn.prepareStatement(sql)
+        ) {
+
+            stmt.setString(1, username);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                if (!rs.next()) {
+                    return Optional.empty();
+                }
+
+                return Optional.of(mapRow(rs));
+            }
+
+        } catch (SQLException e) {
+
+            throw new DataAccessException(
+                "Failed finding customer with username: "
+                    + username, e
+            );
+        }
     }
-    public boolean updatePassword(long customerId, String passwordHash){
-        throw new UnsupportedOperationException();
+
+    @Override
+    public boolean updateUsername(long customerId, String username) {
+        
+        String sql = """
+            UPDATE customers
+            SET user_name = ?
+            WHERE id = ?
+            """;
+
+        try (
+            Connection conn = connectionProvider.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)
+        ) {
+
+            stmt.setString(1, username);
+            stmt.setLong(2, customerId);
+
+            return stmt.executeUpdate() == 1;
+
+        } catch (SQLException e) {
+            throw new DataAccessException(
+                "Failed updating username for customer "
+                        + customerId, e
+            );
+        }
+    }
+
+    @Override
+    public boolean updatePassword(
+            long customerId,
+            String passwordHash) {
+
+        String sql = """
+            UPDATE customers
+            SET password_hash = ?
+            WHERE id = ?
+            """;
+
+        try (
+            Connection conn = connectionProvider.getConnection();
+
+            PreparedStatement stmt = conn.prepareStatement(sql)
+        ) {
+
+            stmt.setString(1, passwordHash);
+            stmt.setLong(2, customerId);
+
+            return stmt.executeUpdate() == 1;
+
+        } catch (SQLException e) {
+
+            throw new DataAccessException(
+                "Failed updating password for customer "
+                        + customerId, e
+            );
+        }
     }
 }
