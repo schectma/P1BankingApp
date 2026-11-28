@@ -2,11 +2,15 @@ package com.p1g8.banking.dao.mongo;
 
 import java.util.List;
 
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import com.p1g8.banking.dao.AccountNoteDao;
 import com.p1g8.banking.model.AccountNote;
 import com.p1g8.banking.model.NoteFilter;
+
+import java.util.ArrayList;
 import java.util.Date;
 import org.bson.Document;
 
@@ -51,8 +55,20 @@ public class MongoAccountNoteDao implements AccountNoteDao {
         return note;
     }
     @Override
-    public List<AccountNote> findByAccountId(long accountId){
-        throw new UnsupportedOperationException();
+    public List<AccountNote> findByAccountId(long accountId) {
+
+        List<AccountNote> notes =
+            new ArrayList<>();
+
+        FindIterable<Document> documents =
+            collection.find(Filters.eq("accountId",accountId));
+
+        for (Document document : documents) {
+            notes.add(
+                fromDocument(document));
+        }
+
+        return notes;
     }
     @Override 
     public List<AccountNote> findByFilter(NoteFilter filter){
