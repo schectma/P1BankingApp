@@ -168,7 +168,34 @@ public class PostgresCustomerDao implements CustomerDao {
         }
     }
 
-    public boolean updatePassword(long customerId, String passwordHash){
-        throw new UnsupportedOperationException();
+    @Override
+    public boolean updatePassword(
+            long customerId,
+            String passwordHash) {
+
+        String sql = """
+            UPDATE customers
+            SET password_hash = ?
+            WHERE id = ?
+            """;
+
+        try (
+            Connection conn = connectionProvider.getConnection();
+
+            PreparedStatement stmt = conn.prepareStatement(sql)
+        ) {
+
+            stmt.setString(1, passwordHash);
+            stmt.setLong(2, customerId);
+
+            return stmt.executeUpdate() == 1;
+
+        } catch (SQLException e) {
+
+            throw new DataAccessException(
+                "Failed updating password for customer "
+                        + customerId, e
+            );
+        }
     }
 }

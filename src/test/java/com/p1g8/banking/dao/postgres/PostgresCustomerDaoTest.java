@@ -173,4 +173,37 @@ public class PostgresCustomerDaoTest {
             )
         );
     }
+
+    /* updatePassword() */
+    @Test
+    void updatePasswordChangesPasswordHash() {
+
+        Customer created = dao.create(customer);
+
+        String newHash = "newPasswordHash";
+
+        boolean updated = dao.updatePassword(
+            created.getCustomerId(),
+            newHash);
+
+        assertTrue(updated);
+
+        Optional<Customer> found = dao.findById(
+            created.getCustomerId());
+
+        assertTrue(found.isPresent());
+
+        assertEquals(newHash, found.get().getPasswordHash());
+    }
+
+    @Test
+    void updatePasswordReturnsFalseWhenCustomerMissing() {
+
+        boolean updated =
+            dao.updatePassword(
+                Long.MAX_VALUE,
+                "newHash");
+
+        assertFalse(updated);
+    }
 }
