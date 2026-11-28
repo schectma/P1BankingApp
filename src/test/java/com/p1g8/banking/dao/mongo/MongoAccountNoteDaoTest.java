@@ -130,4 +130,44 @@ public class MongoAccountNoteDaoTest {
                 .anyMatch(
                     n -> n.getId() == id));
     }
+
+    @Test
+    void findByFilterReturnsMatchingTag()
+            throws Exception {
+
+        MongoAccountNoteDao dao =
+                createDao();
+
+        long uniqueId =
+                System.currentTimeMillis();
+
+        AccountNote note =
+                new AccountNote(
+                        uniqueId,
+                        uniqueId,
+                        1L,
+                        "Tag filter test",
+                        List.of("WIRE_TRANSFER"),
+                        null,
+                        Instant.now());
+
+        dao.create(note);
+
+        NoteFilter filter =
+                new NoteFilter(
+                        null,
+                        null,
+                        List.of("WIRE_TRANSFER"),
+                        false,
+                        null,
+                        null);
+
+        List<AccountNote> results =
+                dao.findByFilter(filter);
+
+        assertTrue(
+                results.stream()
+                        .anyMatch(
+                                n -> n.getId() == uniqueId));
+    }
 }
