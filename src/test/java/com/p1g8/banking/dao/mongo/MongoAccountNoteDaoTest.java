@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 
 import com.p1g8.banking.config.MongoConfig;
 import com.p1g8.banking.model.AccountNote;
+import com.p1g8.banking.model.NoteFilter;
+
 import java.util.List;
 import java.util.Properties;
 
@@ -104,5 +106,60 @@ public class MongoAccountNoteDaoTest {
                     n.getId() == uniqueId);
 
         assertTrue(found);
+    }
+
+    private MongoAccountNoteDao createDao() throws Exception {
+
+        Properties properties = new Properties();
+
+        try (InputStream in =
+            getClass()
+                .getClassLoader()
+                .getResourceAsStream(
+                    "application.properties")) {
+
+            assertNotNull(in);
+
+            properties.load(in);
+        }
+
+        MongoConfig config = new MongoConfig(properties);
+
+        return new MongoAccountNoteDao(
+            config.getDatabase());
+    }
+
+    @Test
+    void findByFilterReturnsNotesForAccount() throws Exception {
+
+        MongoAccountNoteDao dao = createDao();
+
+        long id = System.currentTimeMillis();
+
+        AccountNote note = new AccountNote(
+            id,
+            12345L,
+            1L,
+            "Account filter test",
+            List.of("TEST"),
+            null,
+            Instant.now());
+
+        dao.create(note);
+
+        NoteFilter filter = new NoteFilter(
+            12345L,
+            null,
+            List.of(),
+            false,
+            null,
+            null);
+
+        List<AccountNote> results = dao.findByFilter(filter);
+
+        assertTrue(
+            results.stream()
+                .anyMatch(
+                    n -> n.getId() == id));
     }
 }

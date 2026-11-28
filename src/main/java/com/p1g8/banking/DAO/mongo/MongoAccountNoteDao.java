@@ -13,6 +13,7 @@ import com.p1g8.banking.model.NoteFilter;
 import java.util.ArrayList;
 import java.util.Date;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 public class MongoAccountNoteDao implements AccountNoteDao {
 
@@ -70,8 +71,73 @@ public class MongoAccountNoteDao implements AccountNoteDao {
 
         return notes;
     }
-    @Override 
-    public List<AccountNote> findByFilter(NoteFilter filter){
-        throw new UnsupportedOperationException();
+
+    @Override
+    public List<AccountNote> findByFilter(NoteFilter filter) {
+
+        List<Bson> criteria = new ArrayList<>();
+
+        if (filter.getAccountId() != null) {
+            criteria.add(
+                Filters.eq(
+                    "accountId",
+                    filter.getAccountId()));
+        }
+
+        if (filter.getEmployeeId() != null) {
+            criteria.add(
+                Filters.eq(
+                    "employeeId",
+                    filter.getEmployeeId()));
+        }
+
+        if (!filter.getTags().isEmpty()) {
+
+            if (filter.isMatchAll()) {
+                criteria.add(
+                    Filters.all(
+                        "tags",
+                        filter.getTags()));
+            } else {
+                criteria.add(
+                    Filters.in(
+                        "tags",
+                        filter.getTags()));
+            }
+        }
+
+        if (filter.getFrom() != null) {
+            criteria.add(
+                Filters.gte(
+                    "createdAt",
+                    Date.from(
+                        filter.getFrom())));
+        }
+
+        if (filter.getToExclusive() != null) {
+            criteria.add(
+                Filters.lt(
+                    "createdAt",
+                    Date.from(
+                        filter.getToExclusive())));
+        }
+
+        Bson query =
+            criteria.isEmpty()
+                ? new Document()
+                : Filters.and(criteria);
+
+        List<AccountNote> notes =
+                new ArrayList<>();
+
+        FindIterable<Document> documents =
+                collection.find(query);
+
+        for (Document document : documents) {
+            notes.add(
+                fromDocument(document));
+        }
+
+        return notes;
     }
 }
